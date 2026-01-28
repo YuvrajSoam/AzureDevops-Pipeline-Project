@@ -1,4 +1,8 @@
-# Example Voting App
+# AzureDevops-Pipeline-Project
+
+Azure DevOps 3 tier application project with build and deploy stages for each service demonstrating How to use images and using them for ACR
+
+## Example Voting App
 
 A simple distributed application running across multiple Docker containers.
 
@@ -55,6 +59,15 @@ kubectl delete -f k8s-specifications/
 * A [.NET](/worker/) worker which consumes votes and stores them in…
 * A [Postgres](https://hub.docker.com/_/postgres/) database backed by a Docker volume
 * A [Node.js](/result) web app which shows the results of the voting in real time
+
+## Azure DevOps Pipelines
+
+This project includes Azure Pipelines YAML files for CI/CD:
+- `azure-pipelines-worker.yml` - Builds and pushes the .NET worker service
+- `azure-pipelines-vote.yml` - Builds and pushes the Python vote service
+- `azure-pipelines-result.yml` - Builds and pushes the Node.js result service
+
+Each pipeline uses Docker BuildKit for efficient image builds and pushes to Azure Container Registry (ACR).
 
 ## Notes
 
