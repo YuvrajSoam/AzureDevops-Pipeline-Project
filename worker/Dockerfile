@@ -19,7 +19,8 @@ COPY . .
 
 RUN dotnet workload restore
 
-RUN dotnet publish -c Release -r linux-x64 --self-contained false --no-restore
+RUN dotnet publish -c Release -r linux-x64 --self-contained false --no-restore -v diag
+
 
 FROM mcr.microsoft.com/dotnet/runtime:7.0
 WORKDIR /app
