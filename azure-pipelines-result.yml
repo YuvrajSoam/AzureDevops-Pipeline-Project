@@ -15,7 +15,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'ddd0beda-6979-4c4d-ab77-230fe188ba32'
   imageRepository: 'resultapp'
-  containerRegistry: 'yuvrajacr.azurecr.io'
+  containerRegistry: 'yuvrajcr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
   tag: '$(Build.BuildId)'
 
