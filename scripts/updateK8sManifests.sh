@@ -15,7 +15,11 @@ IMAGE_TAG="$4"
 # Note: ACR repository name doesn't include service name, just the repo name
 FULL_IMAGE_PATH="${CONTAINER_REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
 
-REPO_URL="<PAT token for azure devops repo>@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
+# Use Azure DevOps System Access Token or PAT from environment variable
+# In Azure Pipelines, use: $(System.AccessToken)
+# For local testing, set AZURE_DEVOPS_PAT environment variable
+AZURE_DEVOPS_PAT="${AZURE_DEVOPS_PAT:-${SYSTEM_ACCESSTOKEN}}"
+REPO_URL="https://${AZURE_DEVOPS_PAT}@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
 TEMP_DIR="/tmp/temp_repo"
 
 echo "Cloning repository..."
