@@ -39,7 +39,7 @@ SERVICE_NAME="$1"
 IMAGE_REPO="$2"
 IMAGE_TAG="$3"
 
-REPO_URL="https://dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
+REPO_URL="https://EbSfYJNAn2OpfUJ0QdYVYxTlD4Huz3bBGGcZmPFtDmzgriFhLV7oJQQJ99CAACAAAAA5TuKfAAASAZDO2K7m@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
 TEMP_DIR="/tmp/temp_repo"
 
 echo "Cloning repository..."
