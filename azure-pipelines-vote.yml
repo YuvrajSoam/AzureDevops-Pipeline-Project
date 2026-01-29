@@ -15,7 +15,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '4a79c0d7-7316-4b6a-8642-c4816267d1e5'
   imageRepository: 'votingapp'
-  containerRegistry: 'yuvrajacr.azurecr.io'
+  containerRegistry: 'yuvrajcr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/vote/Dockerfile'
   tag: '$(Build.BuildId)'
 
