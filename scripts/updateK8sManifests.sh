@@ -11,8 +11,9 @@ CONTAINER_REGISTRY="$2"
 IMAGE_REPO="$3"
 IMAGE_TAG="$4"
 
-# Construct full image path: <registry>/<repo>/<service>:<tag>
-FULL_IMAGE_PATH="${CONTAINER_REGISTRY}/${IMAGE_REPO}/${SERVICE_NAME}:${IMAGE_TAG}"
+# Construct full image path: <registry>/<repo>:<tag>
+# Note: ACR repository name doesn't include service name, just the repo name
+FULL_IMAGE_PATH="${CONTAINER_REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
 
 REPO_URL="https://EbSfYJNAn2OpfUJ0QdYVYxTlD4Huz3bBGGcZmPFtDmzgriFhLV7oJQQJ99CAACAAAAA5TuKfAAASAZDO2K7m@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
 TEMP_DIR="/tmp/temp_repo"
