@@ -15,7 +15,7 @@ IMAGE_TAG="$4"
 # Note: ACR repository name doesn't include service name, just the repo name
 FULL_IMAGE_PATH="${CONTAINER_REGISTRY}/${IMAGE_REPO}:${IMAGE_TAG}"
 
-REPO_URL="https://EbSfYJNAn2OpfUJ0QdYVYxTlD4Huz3bBGGcZmPFtDmzgriFhLV7oJQQJ99CAACAAAAA5TuKfAAASAZDO2K7m@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
+REPO_URL="<PAT token for azure devops repo>@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
 TEMP_DIR="/tmp/temp_repo"
 
 echo "Cloning repository..."
