@@ -2,13 +2,17 @@
 set -euo pipefail
 
 # Usage:
-# ./updateK8sManifests.sh <service-name> <image-repo> <image-tag>
+# ./updateK8sManifests.sh <service-name> <container-registry> <image-repo> <image-tag>
 # Example:
-# ./updateK8sManifests.sh vote yuvrajcr vote-123
+# ./updateK8sManifests.sh vote yuvrajcr.azurecr.io votingapp 123
 
 SERVICE_NAME="$1"
-IMAGE_REPO="$2"
-IMAGE_TAG="$3"
+CONTAINER_REGISTRY="$2"
+IMAGE_REPO="$3"
+IMAGE_TAG="$4"
+
+# Construct full image path: <registry>/<repo>/<service>:<tag>
+FULL_IMAGE_PATH="${CONTAINER_REGISTRY}/${IMAGE_REPO}/${SERVICE_NAME}:${IMAGE_TAG}"
 
 REPO_URL="https://EbSfYJNAn2OpfUJ0QdYVYxTlD4Huz3bBGGcZmPFtDmzgriFhLV7oJQQJ99CAACAAAAA5TuKfAAASAZDO2K7m@dev.azure.com/YuvrajSoam/voting-app/_git/voting-app"
 TEMP_DIR="/tmp/temp_repo"
@@ -28,12 +32,12 @@ if [ ! -f "$DEPLOYMENT_FILE" ]; then
   exit 1
 fi
 
-echo "Updating image in $DEPLOYMENT_FILE"
-sed -i "s|image:.*|image: ${IMAGE_REPO}/${SERVICE_NAME}:${IMAGE_TAG}|g" "$DEPLOYMENT_FILE"
+echo "Updating image in $DEPLOYMENT_FILE to $FULL_IMAGE_PATH"
+sed -i "s|image:.*|image: ${FULL_IMAGE_PATH}|g" "$DEPLOYMENT_FILE"
 
 git add "$DEPLOYMENT_FILE"
 
-git commit -m "Update ${SERVICE_NAME} image to ${IMAGE_TAG}"
+git commit -m "Update ${SERVICE_NAME} image to ${FULL_IMAGE_PATH}"
 
 git push
 
