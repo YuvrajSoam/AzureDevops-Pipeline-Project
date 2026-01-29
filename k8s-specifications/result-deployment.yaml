@@ -15,7 +15,7 @@ spec:
         app: result
     spec:
       containers:
-      - image: yuvrajacr.azurecr.io/resultapp:111
+      - image: yuvrajcr.azurecr.io/resultapp:112
         name: result
         ports:
         - containerPort: 80
