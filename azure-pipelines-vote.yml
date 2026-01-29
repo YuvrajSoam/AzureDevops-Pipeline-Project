@@ -60,12 +60,11 @@ stages:
   - job: Update
     displayName: Update
     steps:
-
-    # - script: |
-    #     sed -i 's/\r$//' scripts/updateK8sManifests.sh
-    #     chmod +x scripts/updateK8sManifests.sh
-    #     displayName: Prepare shell script
+    - script: |
+        sed -i 's/\r$//' scripts/updateK8sManifests.sh
+        chmod +x scripts/updateK8sManifests.sh
+      displayName: Prepare shell script
     - task: ShellScript@2
       inputs:
         scriptPath: 'scripts/updateK8sManifests.sh'
-        args: 'vote $imageRepository $tag'
+        args: 'vote $(imageRepository) $(tag)'
