@@ -25,34 +25,34 @@ pool:
   name: 'azureagent'
 
 stages:
-# - stage: Build
-#   displayName: Build
-#   jobs:
-#   - job: Build
-#     displayName: Build
-#     steps:
-#     - task: Docker@2
-#       displayName: Build the docker image for vote service
-#       inputs:
-#         containerRegistry: '$(dockerRegistryServiceConnection)'
-#         repository: '$(imageRepository)'
-#         command: 'build'
-#         Dockerfile: 'vote/Dockerfile'
-#         tags: '$(tag)'
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      displayName: Build the docker image for vote service
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'build'
+        Dockerfile: 'vote/Dockerfile'
+        tags: '$(tag)'
 
-# - stage: Push
-#   displayName: Push
-#   jobs:
-#   - job: Push
-#     displayName: Push
-#     steps:
-#     - task: Docker@2
-#       displayName: Push the docker image for vote service
-#       inputs:
-#         containerRegistry: '$(dockerRegistryServiceConnection)'
-#         repository: '$(imageRepository)'
-#         command: 'push'
-#         tags: '$(tag)'
+- stage: Push
+  displayName: Push
+  jobs:
+  - job: Push
+    displayName: Push
+    steps:
+    - task: Docker@2
+      displayName: Push the docker image for vote service
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'push'
+        tags: '$(tag)'
 
 - stage: UpdateImage
   displayName: UpdateImageK8s
@@ -61,10 +61,10 @@ stages:
     displayName: Update
     steps:
 
-    - script: |
-        sed -i 's/\r$//' scripts/updateK8sManifests.sh
-        chmod +x scripts/updateK8sManifests.sh
-        displayName: Prepare shell script
+    # - script: |
+    #     sed -i 's/\r$//' scripts/updateK8sManifests.sh
+    #     chmod +x scripts/updateK8sManifests.sh
+    #     displayName: Prepare shell script
     - task: ShellScript@2
       inputs:
         scriptPath: 'scripts/updateK8sManifests.sh'
