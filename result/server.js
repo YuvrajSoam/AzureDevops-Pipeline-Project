@@ -3,8 +3,7 @@ var express = require('express'),
     { Pool } = require('pg'),
     cookieParser = require('cookie-parser'),
     app = express(),
-    server = require('http').Server(app),
-    
+    server = require('http').Server(app),   
     io = require('socket.io')(server);
 
 var port = process.env.PORT || 4000;
